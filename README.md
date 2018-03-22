@@ -6,6 +6,10 @@ Create Transmitter. For example, use transmitter with unbuffered PDO query and s
 
 ```
 return new \Symfony\Component\HttpFoundation\StreamedResponse(function() use ($pdo) {
+    $tm = new \RV\TProto\Proto\Transmitter\Transmitter(function($data) {
+        echo $data;
+    }, null, true);
+    
     $pdo->setAttribute(\PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
     $res = $pdo->query("SELECT id, status FROM tblclients");
     while (false !== ($row = $res->fetch(\PDO::FETCH_ASSOC))) {
