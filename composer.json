@@ -1,0 +1,18 @@
+{
+  "name": "rv/tproto",
+  "description": "Stream transfer/receive objects over HTTP",
+  "keywords": [
+    "buffer",
+    "transfer",
+    "json"
+  ],
+  "license": "MIT",
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "RV\\TProto\\": "src/"
+    }
+  }
+}
