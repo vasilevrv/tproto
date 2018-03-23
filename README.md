@@ -4,7 +4,7 @@
 
 Create Transmitter. For example, use transmitter with unbuffered PDO query and symfony:
 
-```
+```php
 return new \Symfony\Component\HttpFoundation\StreamedResponse(function() use ($pdo) {
     $tm = new \RV\TProto\Proto\Transmitter\Transmitter(function($data) {
         echo $data;
@@ -20,7 +20,7 @@ return new \Symfony\Component\HttpFoundation\StreamedResponse(function() use ($p
 
 Create receiver. For example (now there is only guzzle adapter, you can use your own adapters):
 
-```
+```php
 $stream = $client->get('https://test.com/stream')->getBody();
 $update = new \RV\TProto\Proto\Receiver\Receiver($stream, function($data) {
     print_r($data);
@@ -30,7 +30,7 @@ $update->run();
 
 If you need to receive objects not one at a time, but a batch, then you can use BatchReceiver (200 in batch, for example):
 
-```
+```php
 $stream = $client->get('https://test.com/stream')->getBody();
 $update = new \RV\TProto\Proto\Receiver\BatchReceiver($stream, function($data) {
     print count($data);
@@ -42,7 +42,7 @@ $update->run();
 
 Also, you can use customize serializer and DTO:
 
-```
+```php
 class Client
 {
     public $id;
@@ -56,7 +56,7 @@ class Client
 }
 ```
 
-```
+```php
 class CustomSerializer implements \RV\TProto\Serializer\SerializerInterface
 {
     public function serialize($data)
@@ -78,7 +78,7 @@ class CustomSerializer implements \RV\TProto\Serializer\SerializerInterface
 
 And use it on transmitter and receiver, for example receiver:
 
-```
+```php
 $update = new \RV\TProto\Proto\Receiver\Receiver($stream, function($data) {
     var_dump($data);
 }, new CustomSerializer());
@@ -86,7 +86,7 @@ $update = new \RV\TProto\Proto\Receiver\Receiver($stream, function($data) {
 
 It print object:
 
-```
+```php
 object(Client)#1 (2) {
   ["id"]=>
   int(123)
